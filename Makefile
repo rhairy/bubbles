@@ -11,6 +11,7 @@ vgatm.o: vgatm.c
 boot.o: boot.s
 	$(CC) $(CFLAGS) boot.s -o boot.o
 grub:
+	cp myos.bin isodir/boot
 	grub2-mkrescue -o myos.iso isodir
 clean:
 	rm -f *.o *.bin *.iso
