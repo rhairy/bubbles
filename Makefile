@@ -6,7 +6,7 @@ myos: kernel.o boot.o vgatm.o
 	$(CC) $(LDFLAGS) kernel.o boot.o vgatm.o -o myos.bin
 kernel.o: kernel.c 
 	$(CC) $(CFLAGS) kernel.c -o kernel.o
-vgatm.o: vgatm.c bda.o
+vgatm.o: vgatm.c
 	$(CC) $(CFLAGS) vgatm.c -o vgatm.o
 boot.o: boot.s
 	$(CC) $(CFLAGS) boot.s -o boot.o
