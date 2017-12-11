@@ -6,7 +6,7 @@ myos: kernel.o boot.o vgatm.o
 	$(CC) $(LDFLAGS) kernel.o boot.o vgatm.o -o myos.bin
 kernel.o: kernel.c 
 	$(CC) $(CFLAGS) kernel.c -o kernel.o
-vgatm.o: vgatm.c
+vgatm.o: vgatm.c bda.o
 	$(CC) $(CFLAGS) vgatm.c -o vgatm.o
 boot.o: boot.s
 	$(CC) $(CFLAGS) boot.s -o boot.o
@@ -14,4 +14,6 @@ grub:
 	cp myos.bin isodir/boot
 	grub2-mkrescue -o myos.iso isodir
 clean:
-	rm -f *.o *.bin *.iso
+	rm -f *.o *.bin *.iso *.a *.exe *.so
+qemu:
+	qemu-system-i386 -kernel myos.bin -monitor stdio
